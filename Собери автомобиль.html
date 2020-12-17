@@ -1,0 +1,67 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Собери автомобиль</title>
+	<body>
+		<div id="car">
+			<div style="margin: 0 auto; display: flex; align-items: center; justify-content: center">
+				<div>
+					<div>
+						<input type="image" src="крыша.png" id="roof">
+					</div>
+					<div>
+						<span>
+							<input type="image" src="капот.png" id="bumper"> 
+						</span>
+						<span>
+							<input type="image" src="двери.png" id="doors">
+						</span>
+						<span>
+							<input type="image" src="багажник.png" id="trunk">
+						</span>
+					</div>
+					<div>
+						<input type="image" src="колеса.png" id="wheels">
+					</div>
+				</div>
+			</div>
+			<div style="margin-left: auto; margin-right: auto; width: 6em">
+				<b>Корзина:</b>
+				<p id="basket" style="white-space: break-spaces"></p>
+			</div>
+		</div>
+				
+		<script>
+			const cart = {
+				roof: 0,
+				bumper: 0,
+				doors: 0,
+				trunk: 0,
+				wheels: 0
+			}
+						
+			document.onclick = (event) => {  //event - собитие (клик)
+				addFunction(event.target.id); //target - объект на который кликают
+			}
+			
+			const addFunction = (id) => {
+				cart[id]+=1;
+				renderCart();
+			}
+
+			const renderCart = () => {
+				document.getElementById('basket').innerHTML = (cart['roof'] ? 'Крыша x' + cart['roof'] + '\n' : '') +
+																(cart['bumper'] ? 'Бампер x' + cart['bumper'] + '\n' : '') +
+																(cart['doors'] ? 'Двери x' + cart['doors'] + '\n' : '') +
+																(cart['trunk'] ? 'Багажник x' + cart['trunk'] + '\n' : '') +
+																(cart['wheels'] ? 'Колеса x' + cart['wheels'] + '\n' : '');
+																
+				if ((cart['roof'] > 0) && (cart['bumper'] > 0) && (cart['doors'] > 0) && (cart['trunk'] > 0) && (cart['wheels'] > 0)) {
+					document.getElementById('car').innerHTML = '<h1>Вы собрали DeLorean!</h1>';
+				}
+			}
+			
+		</script>
+	</body>
+</html>
